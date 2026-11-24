@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Sea Escapes — Dive, Sail, Breathe</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root { --ink:#0d2b3e; --teal:#0e7c86; --coral:#ff6b4a; --sand:#fdf6ec; }
+  body { font-family:'Segoe UI', system-ui, sans-serif; color:var(--ink); background:var(--sand); }
+  nav { position:fixed; top:0; width:100%; z-index:20; display:flex; justify-content:space-between; align-items:center; padding:22px 6vw; transition:.3s; }
+  nav.solid { background:rgba(253,246,236,.92); backdrop-filter:blur(12px); box-shadow:0 4px 20px rgba(13,43,62,.08); }
+  .logo { font-size:21px; font-weight:800; color:#fff; transition:.3s; }
+  nav.solid .logo { color:var(--ink); }
+  .logo span { color:var(--coral); }
+  nav ul { display:flex; gap:30px; list-style:none; }
+  nav a { color:rgba(255,255,255,.9); text-decoration:none; font-size:14px; font-weight:500; transition:.3s; }
+  nav.solid a { color:var(--ink); }
+  .nav-cta { background:var(--coral); color:#fff !important; padding:11px 24px; border-radius:40px; }
+  .nav-cta:hover { background:#e5563a; }
+  header { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff; position:relative; overflow:hidden;
+    background:linear-gradient(180deg, rgba(9,42,60,.35), rgba(9,42,60,.55)), linear-gradient(200deg, #0e7c86 0%, #12556e 40%, #0d2b3e 100%); }
+  .wave { position:absolute; bottom:-2px; left:0; width:200%; animation:slide 9s linear infinite; }
+  @keyframes slide { to { transform:translateX(-50%); } }
+  .hero { position:relative; z-index:2; padding:0 6vw; }
+  .hero .k { letter-spacing:5px; font-size:13px; text-transform:uppercase; color:#ffd9a8; }
+  .hero h1 { font-size:clamp(44px,7.5vw,100px); font-weight:900; letter-spacing:-2px; line-height:1.02; margin:18px 0 22px; }
+  .hero p { font-size:18px; max-width:520px; margin:0 auto 38px; line-height:1.7; color:rgba(255,255,255,.85); }
+  .finder { background:#fff; border-radius:18px; padding:14px; display:flex; gap:10px; max-width:760px; margin:0 auto; box-shadow:0 30px 70px rgba(0,0,0,.3); flex-wrap:wrap; }
+  .finder select, .finder input { flex:1; min-width:150px; padding:15px; border:1px solid #e5ded2; border-radius:12px; font-size:14px; font-family:inherit; color:var(--ink); background:#fff; }
+  .finder button { background:var(--coral); color:#fff; border:none; padding:15px 34px; border-radius:12px; font-size:15px; font-weight:700; cursor:pointer; transition:.25s; }
+  .finder button:hover { background:#e5563a; }
+  section { padding:110px 6vw; max-width:1240px; margin:0 auto; }
+  .sec-tag { color:var(--teal); font-weight:700; letter-spacing:3px; font-size:13px; text-transform:uppercase; }
+  h2 { font-size:clamp(30px,4.5vw,52px); font-weight:800; letter-spacing:-1.5px; margin:12px 0 54px; }
+  .dest { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:22px; }
+  .dcard { border-radius:20px; overflow:hidden; position:relative; aspect-ratio:4/5; color:#fff; display:flex; align-items:flex-end; transition:.4s; cursor:pointer; }
+  .dcard:hover { transform:translateY(-8px); }
+  .dcard .bg { position:absolute; inset:0; transition:.6s; }
+  .dcard:hover .bg { transform:scale(1.07); }
+  .dcard .info { position:relative; z-index:2; padding:28px; background:linear-gradient(transparent, rgba(0,0,0,.65)); width:100%; }
+  .dcard h3 { font-size:26px; }
+  .dcard p { font-size:14px; opacity:.9; margin-top:6px; }
+  .dcard .from { position:absolute; top:20px; right:20px; z-index:2; background:rgba(255,255,255,.9); color:var(--ink); font-weight:700; font-size:13px; padding:7px 14px; border-radius:30px; }
+  .g1 { background:radial-gradient(500px 400px at 30% 25%, #58c4dd, #127a8a 55%, #0a4552); }
+  .g2 { background:radial-gradient(500px 400px at 70% 20%, #ffb469, #e5693f 55%, #7c2d12); }
+  .g3 { background:radial-gradient(500px 400px at 40% 30%, #7fe0c3, #0e7c86 55%, #083038); }
+  .exp { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+  .ecard { background:#fff; border-radius:18px; padding:36px 28px; box-shadow:0 10px 30px rgba(13,43,62,.07); transition:.3s; }
+  .ecard:hover { transform:translateY(-6px); box-shadow:0 24px 50px rgba(13,43,62,.12); }
+  .ecard .ico { font-size:34px; margin-bottom:16px; }
+  .ecard h3 { font-size:20px; margin-bottom:8px; }
+  .ecard p { color:#5b7180; font-size:14.5px; line-height:1.7; }
+  .quote { text-align:center; background:linear-gradient(140deg, #0d2b3e, #0e7c86); color:#fff; border-radius:26px; padding:80px 8vw; }
+  .quote p { font-size:clamp(20px,2.6vw,30px); font-weight:600; line-height:1.6; font-style:italic; }
+  .quote .who { margin-top:24px; color:#9fd8de; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  footer { background:var(--ink); color:#cfe0e8; padding:60px 6vw 34px; }
+  footer .cols { display:flex; justify-content:space-between; flex-wrap:wrap; gap:26px; max-width:1240px; margin:0 auto; }
+  footer b { color:#fff; }
+  footer .copy { text-align:center; margin-top:44px; font-size:13px; color:#7d99a8; }
+  @media (max-width:720px){ nav ul{display:none;} }
+</style>
+</head>
+<body>
+<nav id="nav">
+  <div class="logo">RedSea<span>·</span>Escapes</div>
+  <ul>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#experiences">Experiences</a></li>
+    <li><a href="#book" class="nav-cta">Plan my trip</a></li>
+  </ul>
+</nav>
+<header id="book">
+  <div class="hero">
+    <div class="k">Hurghada · Dahab · Marsa Alam</div>
+    <h1>Dive. Sail.<br>Breathe.</h1>
+    <p>Hand-built Red Sea journeys: coral gardens at dawn, Bedouin dinners under desert stars, and water so clear it feels like flying.</p>
+    <div class="finder">
+      <select><option>Dahab</option><option>Hurghada</option><option>Marsa Alam</option><option>El Gouna</option></select>
+      <input type="date">
+      <select><option>2 travellers</option><option>4 travellers</option><option>Group 6+</option></select>
+      <button onclick="document.getElementById('destinations').scrollIntoView({behavior:'smooth'})">Search</button>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 110" preserveAspectRatio="none" style="height:90px;">
+    <path fill="#fdf6ec" d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,110 L0,110 Z"/>
+    <path fill="rgba(253,246,236,.4)" d="M0,80 C240,120 480,30 720,80 C960,120 1200,30 1440,80 L1440,110 L0,110 Z"/>
+  </svg>
+</header>
+<section id="destinations">
+  <div class="sec-tag">Where to go</div>
+  <h2>Destinations we love</h2>
+  <div class="dest">
+    <div class="dcard"><div class="bg g1"></div><div class="from">from $340</div><div class="info"><h3>Dahab</h3><p>The Blue Hole, canyon reefs and barefoot cafés on the water.</p></div></div>
+    <div class="dcard"><div class="bg g2"></div><div class="from">from $290</div><div class="info"><h3>Hurghada</h3><p>Island-hopping, kitesurfing lagoons and old-town seafood.</p></div></div>
+    <div class="dcard"><div class="bg g3"></div><div class="from">from $410</div><div class="info"><h3>Marsa Alam</h3><p>Dugongs, dolphins at Samadai, and reefs with nobody on them.</p></div></div>
+  </div>
+</section>
+<section id="experiences">
+  <div class="sec-tag">What you'll do</div>
+  <h2>Experiences</h2>
+  <div class="exp">
+    <div class="ecard"><div class="ico">🤿</div><h3>Guided dives</h3><p>PADI-certified guides, small groups, house reefs and wrecks from beginner to tech.</p></div>
+    <div class="ecard"><div class="ico">⛵</div><h3>Private sailing</h3><p>Full-day felucca and yacht charters with lunch grilled on board.</p></div>
+    <div class="ecard"><div class="ico">🏜️</div><h3>Desert nights</h3><p>Quad safaris into the Eastern Desert, ending with dinner and stargazing.</p></div>
+    <div class="ecard"><div class="ico">🐬</div><h3>Wildlife encounters</h3><p>Ethical dolphin-house snorkelling and turtle bays with marine biologists.</p></div>
+  </div>
+</section>
+<section>
+  <div class="quote">
+    <p>"The best four days of our honeymoon. Every detail was handled, and the reef at sunrise was unreal."</p>
+    <div class="who">— Salma &amp; Omar, Cairo</div>
+  </div>
+</section>
+<footer>
+  <div class="cols">
+    <div><b>RedSea·Escapes</b><p style="margin-top:10px; font-size:14px; max-width:280px;">Boutique Red Sea travel, designed and led by locals since 2015.</p></div>
+    <div><b>Contact</b><p style="margin-top:10px; font-size:14px;">hello@redseaescapes.com<br>+20 100 000 0000</p></div>
+    <div><b>Office</b><p style="margin-top:10px; font-size:14px;">Marina Boulevard, El Gouna<br>Red Sea, Egypt</p></div>
+  </div>
+  <div class="copy">© 2026 Red Sea Escapes. Travel kindly.</div>
+</footer>
+<script>
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', ()=> nav.classList.toggle('solid', scrollY > 60));
+</script>
+</body>
+</html>
